@@ -1,0 +1,11 @@
+{
+  "name": "pico-nodetest",
+  "version": "1.0.0",
+  "description": "Small implementation of a test framework in node for educational purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Josh Peak",
+  "license": "MIT"
+}
