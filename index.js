@@ -11,9 +11,19 @@ function collectFiles(_path, suffix) {
 }
 function collectSpecs(files, prefix) {
   return files.map( (file) => { return {file: file, spec: require( `./${file}`)} } )
-    .map( (spec) => { return Object.entries(spec.spec).map( ([k,v]) => { return { [`${spec.file}::${k}`]: v} }) })
+    .map( (spec) => { return Object.entries(spec.spec).map( ([k,v]) => { return [spec.file, k, v] }) })
     .flatMap( (x) => x )
-    .filter( (x) => Object.entries(x).every( ([k,v]) => k.split('::')[1].startsWith(prefix) && typeof v === 'function' ) );
+    .filter( (x) => x[1].startsWith(prefix) && typeof x[2] === 'function' );
+}
+function execute(specs){
+  return specs.map( (spec) => {
+    try {
+      spec[2]()
+      return [spec[0], '.'];
+    } catch (err) {
+      return [spec[0], 'F', err];
+    }
+  });
 }
 
 function main(){
@@ -21,6 +31,9 @@ function main(){
   log(files);
   let specs = collectSpecs(files, 'test_');
   log(specs);
+  let results = execute(specs);
+  log(results);
+  if ( results.some( (x) => x[1] === 'F' ) ) process.exit(1);
 };
 
 if (require.main === module) main();
