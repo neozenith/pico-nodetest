@@ -26,9 +26,10 @@ npm test
   [ 'test/second.spec.js', 'test_failure', [Function (anonymous)] ]
 ]
 [
-  [ 'test/first.spec.js', '.' ],
+  [ 'test/first.spec.js', 'test_addition', '.' ],
   [
     'test/second.spec.js',
+    'test_failure',
     'F',
     AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
 
