@@ -1,5 +1,7 @@
 # pico-nodetest
 
+Inspired by [a twitter joke](https://gitlab.com/obestwalter/pico-pytest/-/blob/1.0+twitter-joke/src/pico_pytest/pytest.py) where Oliver Bestwalter created a basic testing framework in Python using 25 lines of code I wanted to try it in NodeJS using only the standard library.
+
 ## Getting started
 
 ```bash
